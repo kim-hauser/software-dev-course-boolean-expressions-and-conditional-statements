@@ -26,11 +26,12 @@ Paste the following code into your editor:
 
 const readline = require('readline-sync');
 
-const hasTorch = true;
+const hasTorch = false;
 const hasMap = false;
+const hasSword = false;
 
 console.log("You see two paths: one leads to the mountains, the other to the village.");
-const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
+const choice = readline.question("Do you go to the 'mountains', the 'village', or 'somewhere else'? ");
 
 if (choice === "mountains" && hasTorch) {
   console.log("You safely navigate through the dark mountains.");
@@ -38,8 +39,15 @@ if (choice === "mountains" && hasTorch) {
   console.log("It's too dark to proceed. You decide to turn back.");
 } else if (choice === "village" || hasMap) {
   console.log("You find your way to the village.");
-} else {
-  console.log("You get lost and wander aimlessly.");
+} else if (choice === "somewhere else" && !hasSword) {
+  console.log("You decide to split the difference and take a third path. You run into a bear. Because you HAVE A SWORD, you successfully behead it.");
+    if (hasTorch)
+      console.log("You set the bear's corpse ablaze.");
+    else {console.log("You do not have a torch to burn the bear's body.");
+    }
+} else if (choice === "somewhere else" || hasSword) {
+  console.log("You decide to split the difference and take a third path. You run into a bear. Because you DO NOT HAVE A SWORD, the bear eats you. Very sad. :( ");
+} else {console.log("You get lost and wander aimlessly.");
 }
 
 /* 
